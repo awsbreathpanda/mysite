@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now, timedelta
 
 
 # Create your models here.
@@ -14,6 +15,9 @@ class Question(models.Model):
         managed = True
         verbose_name = 'Question'
         verbose_name_plural = 'Questions'
+
+    def was_published_recently(self):
+        return self.pub_date >= now() - timedelta(days=1)
 
 
 class Choice(models.Model):
