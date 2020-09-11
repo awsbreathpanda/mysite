@@ -21,9 +21,9 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-    question_text = models.ForeignKey('Question',
-                                      on_delete=models.CASCADE,
-                                      db_constraint=False)
+    question = models.ForeignKey('Question',
+                                 on_delete=models.CASCADE,
+                                 db_constraint=False)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
