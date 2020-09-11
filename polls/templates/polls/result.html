@@ -34,10 +34,19 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
+            {% if user.is_authenticated %}
             <ul class="nav navbar-nav pull-right">
-              <li><a href="#">注册</a></li>
-              <li><a href="#">登录</a></li>
+              <li><a href="#">Welcome {{ user.username }}</a></li>
+              <li><a href="{% url 'polls:logout' %}">登出</a></li>
             </ul>
+
+            {% else %}
+            <ul class="nav navbar-nav pull-right">
+              <li><a href="{% url 'polls:register' %}">注册</a></li>
+              <li><a href="{% url 'polls:login' %}">登录</a></li>
+            </ul>
+
+            {% endif %}
           </div>
           <!-- /.navbar-collapse -->
         </div>

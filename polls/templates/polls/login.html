@@ -48,6 +48,7 @@
 
             {% endif %}
           </div>
+          <!-- /.navbar-collapse -->
         </div>
 
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,44 +58,30 @@
     <section id="content">
       <div class="container">
         <div class="row">
-          <h3>Question: {{ question.question_text }}</h3>
-          {% if error_messsage %}
-
-          <div class="alert alert-danger">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              aria-hidden="true"
-            >
-              &times;
-            </button>
-            <strong>Error!</strong>
-            <p><strong>{{ error_message }}</strong></p>
-          </div>
-
-          {% endif %}
+          <h3>Login</h3>
 
           <form method="POST" role="form">
             {% csrf_token %}
-            <!-- <legend>vote</legend> -->
-
             <div class="form-group">
-              {% for choice in question.choice_set.all %}
-
-              <div class="radio">
-                <label>
-                  <input
-                    type="radio"
-                    name="choice"
-                    id="choice{{ forloop.counter }}"
-                    value="{{ choice.id }}"
-                  />
-                  {{ choice.choice_text }}
-                </label>
-              </div>
-
-              {% endfor %}
+              <label for="username">name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="Input username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                required="required"
+                placeholder="Input password"
+              />
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
