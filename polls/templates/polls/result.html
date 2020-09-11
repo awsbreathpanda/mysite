@@ -58,37 +58,39 @@
     <section id="content">
       <div class="container">
         <div class="row">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{ question.question_text }}</h3>
-            </div>
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{ question.question_text }}</h3>
+              </div>
 
-            <ul class="list-group">
-              {% for choice in question.choice_set.all %}
-              <li class="list-group-item">
-                <div class="row">
-                  <div class="col-md-1">
-                    <p><strong>{{ choice.choice_text }}:</strong></p>
-                  </div>
-                  <div class="col-md-11">
-                    <div class="progress">
-                      <div
-                        class="progress-bar"
-                        role="progressbar"
-                        aria-valuenow="{{ choice.votes }}"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                        style="width: {{ choice.votes }}%"
-                      >
-                        {{ choice.votes }}
+              <ul class="list-group">
+                {% for choice in question.choice_set.all %}
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <p><strong>{{ choice.choice_text }}:</strong></p>
+                    </div>
+                    <div class="col-md-11">
+                      <div class="progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          aria-valuenow="{{ choice.votes }}"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style="width: {{ choice.votes }}%"
+                        >
+                          {{ choice.votes }}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </li>
+                </li>
 
-              {% endfor %}
-            </ul>
+                {% endfor %}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

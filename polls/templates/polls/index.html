@@ -58,20 +58,22 @@
     <section id="content">
       <div class="container">
         <div class="row">
-          <h3>Poll</h3>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Question</h3>
-            </div>
-            <div class="list-group">
-              {% for question in latest_question_list %}
+          <div class="col-md-12">
+            <h3>Poll</h3>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Question</h3>
+              </div>
+              <div class="list-group">
+                {% for question in latest_question_list %}
 
-              <a
-                href="{% url 'polls:detail' question.id %}"
-                class="list-group-item"
-                >{{ question.question_text }}</a
-              >
-              {% endfor %}
+                <a
+                  href="{% url 'polls:detail' question.id %}"
+                  class="list-group-item"
+                  >{{ question.question_text }}</a
+                >
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>

@@ -57,48 +57,50 @@
     <section id="content">
       <div class="container">
         <div class="row">
-          <h3>Question: {{ question.question_text }}</h3>
-          {% if error_messsage %}
+          <div class="col-md-12">
+            <h3>Question: {{ question.question_text }}</h3>
+            {% if error_messsage %}
 
-          <div class="alert alert-danger">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              aria-hidden="true"
-            >
-              &times;
-            </button>
-            <strong>Error!</strong>
-            <p><strong>{{ error_message }}</strong></p>
-          </div>
-
-          {% endif %}
-
-          <form method="POST" role="form">
-            {% csrf_token %}
-            <!-- <legend>vote</legend> -->
-
-            <div class="form-group">
-              {% for choice in question.choice_set.all %}
-
-              <div class="radio">
-                <label>
-                  <input
-                    type="radio"
-                    name="choice"
-                    id="choice{{ forloop.counter }}"
-                    value="{{ choice.id }}"
-                  />
-                  {{ choice.choice_text }}
-                </label>
-              </div>
-
-              {% endfor %}
+            <div class="alert alert-danger">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-hidden="true"
+              >
+                &times;
+              </button>
+              <strong>Error!</strong>
+              <p><strong>{{ error_message }}</strong></p>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+            {% endif %}
+
+            <form method="POST" role="form">
+              {% csrf_token %}
+              <!-- <legend>vote</legend> -->
+
+              <div class="form-group">
+                {% for choice in question.choice_set.all %}
+
+                <div class="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="choice"
+                      id="choice{{ forloop.counter }}"
+                      value="{{ choice.id }}"
+                    />
+                    {{ choice.choice_text }}
+                  </label>
+                </div>
+
+                {% endfor %}
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
