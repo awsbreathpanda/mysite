@@ -17,7 +17,8 @@ class Question(models.Model):
         verbose_name_plural = 'Questions'
 
     def was_published_recently(self):
-        return self.pub_date >= now() - timedelta(days=1)
+
+        return now() - timedelta(days=1) <= self.pub_date <= now()
 
 
 class Choice(models.Model):
