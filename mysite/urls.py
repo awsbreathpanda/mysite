@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include, re_path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^polls/', include(('polls.urls', 'polls'), namespace='polls')),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
