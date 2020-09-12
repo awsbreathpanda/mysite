@@ -3,8 +3,7 @@ on:
   release:
     types: [published]
 jobs:
-  push_to_registry:
-    name: Push Docker image to GitHub Packages
+  build_push_docker_image:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
