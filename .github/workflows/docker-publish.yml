@@ -12,8 +12,8 @@ jobs:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
-          username: awsbreathpanda #${{ github.actor }}
-          password: Libin1982 #${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: awsbreathpanda/mysite/mysite
           tag_with_ref: true
