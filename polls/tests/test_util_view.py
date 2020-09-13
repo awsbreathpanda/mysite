@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.utils.timezone import now, timedelta
-from polls.models import Question
+from polls.models import Choice, Question
+from django.contrib.auth.models import User
 
 from django.urls import reverse
 
@@ -41,3 +42,45 @@ class IndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(response.context['latest_question_list'],
                                  ['<Question: Demo question.>'])
+
+
+class DetailViewTests(TestCase):
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username='libin', password='123')
+        self.question = Question.objects.create(
+            question_text='unit_test question?')
+        self.choice_good = Choice.objects.create(question=self.question,
+                                                 choice_text='good',
+                                                 votes=0)
+        self.choice_soso = Choice.objects.create(question=self.question,
+                                                 choice_text='soso',
+                                                 votes=0)
+        self.choice_bad = Choice.objects.create(question=self.question,
+                                                choice_text='bad',
+                                                votes=0)
+
+    def tearDown(self) -> None:
+        self.question.delete()
+        self.user.delete()
+
+    def test_get(self):
+
+        self.client.login(username='libin', password='123')
+        response = self.client.get(
+            reverse('polls:detail', kwargs={'id': self.question.id}))
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_post(self):
+
+        self.client.login(username='libin', password='123')
+        response = self.client.post(reverse('polls:detail',
+                                            kwargs={'id': self.question.id}),
+                                    data={
+                                        'choice': self.choice_good.id,
+                                    })
+
+        self.assertEqual(response.status_code, 302)
+
+        good_choice_votes = Choice.objects.get(id=self.choice_good.id).votes
+        self.assertEqual(good_choice_votes, 1)
