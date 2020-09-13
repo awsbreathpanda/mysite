@@ -15,12 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls.conf import include, re_path
+from django.urls.conf import include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from api.urls import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^polls/', include(('polls.urls', 'polls'), namespace='polls')),
+    path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
+    path('api/', include(router.urls)),
+    path(
+        'api-auth/',
+        include(('rest_framework.urls', 'rest_framework'),
+                namespace='rest_framework')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
