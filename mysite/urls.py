@@ -22,11 +22,11 @@ from api.urls import router
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include(('polls.urls', 'polls'), namespace='polls')),
-    path('api/', include(router.urls)),
     path(
         'api-auth/',
         include(('rest_framework.urls', 'rest_framework'),
                 namespace='rest_framework')),
+    path('api/', include(router.urls)),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
