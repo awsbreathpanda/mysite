@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.utils.timezone import now, timedelta
-from .models import Question
+from polls.models import Question
+
 from django.urls import reverse
 
 
