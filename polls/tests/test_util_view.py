@@ -71,6 +71,9 @@ class DetailViewTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+        self.assertEqual(str(response.context['question']),
+                         self.question.question_text)
+
     def test_post(self):
 
         self.client.login(username='libin', password='123')
